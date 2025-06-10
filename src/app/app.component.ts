@@ -6,7 +6,16 @@ import { AddToCartComponent } from "./components/add-to-cart/add-to-cart.compone
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
-});
+})
+
+export class AppComponent {
+  title = 'Product list';
+  desserts:Dessert[] | null = null;
+
+  constructor() {
+    this.desserts = desseretData;
+  };
+};
 
 // interface
 interface Dessert {
@@ -23,11 +32,4 @@ interface DessertImages {
   desktop: string;
 };
 
-export class AppComponent {
-  title = 'Product list';
-  desserts:Dessert[] | null = null;
 
-  constructor() {
-    this.desserts = desseretData;
-  };
-};
