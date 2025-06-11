@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,inject,Input } from '@angular/core';
+import { Dessert } from '../../../../public/datainterface';
+import { CartserviceService } from '../../services/cartservice.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -9,21 +11,27 @@ import { Component } from '@angular/core';
 export class AddToCartComponent {
   isAddedToCart = false;
   quantity = 1;
+  cartservice = inject(CartserviceService)
+  @Input() dessert!:Dessert
 
   addToCart() {
     this.isAddedToCart = true;
+    this.cartservice.addToCart({name:this.dessert.name,quantity:1,price:this.dessert.price})
   }
 
   decreaseProductItem() {
     if (this.quantity <= 1) {
       this.isAddedToCart = false;
-      this.quantity = 1
+      // this.quantity = 1
+      return
     }
     this.quantity--;
+    this.cartservice.decreaseQuantity(this.dessert.name)
   }
 
   increaseProductItem() {
     ++this.quantity;
+    this.cartservice.increaseQuantity(this.dessert.name)
   }
 
 };
