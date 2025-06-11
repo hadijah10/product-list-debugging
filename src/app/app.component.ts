@@ -4,6 +4,7 @@ import { AddToCartComponent } from "./components/add-to-cart/add-to-cart.compone
 
 @Component({
   selector: 'app-root',
+  imports:[AddToCartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
