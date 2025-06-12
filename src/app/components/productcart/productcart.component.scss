@@ -1,6 +1,13 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
+// @mixin flex($direction:row, $justify:flex-start, $align:stretch, $gap:0) {
+//   display: flex;
+//   flex-direction: $direction;
+//   justify-content: $justify;
+//   align-items: $align;
+//   gap: $gap;
+// }
 // cart section
 .cart {
   width: 300px;
@@ -12,6 +19,16 @@
   h2 {
     @include TextPreset2;
     color: $red;
+  }
+.name{
+  @include flex(column);
+  .details{
+    @include flex(row)
+  }
+
+}
+  .product{
+    @include flex(row,space-between,center)
   }
 
   .content {

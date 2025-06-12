@@ -15,7 +15,6 @@ main {
 
 .desserts {
   @include flex(column, flex-start, stretch, 2rem);
-
   width: 100%;
   height: 100%;
   
