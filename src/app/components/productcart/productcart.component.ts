@@ -13,6 +13,7 @@ export class ProductcartComponent {
  productdata:DessertCardDetals[] = []
  totalItemsCount: number = 0
  totalPrice:number = 0;
+ isConfired:boolean = true;
 
   constructor(private cartservice:CartserviceService){
     this.cartservice.cartItemsSub.subscribe(data => {
@@ -29,7 +30,7 @@ export class ProductcartComponent {
  }
 
  handleOrder(){
-  
+
  }
 
 }
