@@ -1,6 +1,6 @@
 @if(productdata.length >0){
       <section class="cart">
-    <h2>Your Cart ({{productdata.length}})</h2>
+    <h2>Your Cart ({{totalItemsCount}})</h2>
     <div class="content">
         @for(dessert of productdata;track $index){
             <section class="product">
@@ -8,7 +8,7 @@
                     <h3>{{dessert.name}}</h3>
                     <div class="details">
                         <p>{{dessert.quantity}}x</p>
-                        <p>${{dessert.price}}</p>
+                        <p>{{'@$' + dessert.price}}</p>
                         <p>${{dessert.quantity * dessert.price}}</p>
                     </div>
                 </div>

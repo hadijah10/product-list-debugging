@@ -11,10 +11,12 @@ import { DessertCardDetals } from '../../../../public/dessertcartdetails';
 export class ProductcartComponent {
 
  productdata:DessertCardDetals[] = []
+ totalItemsCount: number = 0
 
   constructor(private cartservice:CartserviceService){
     this.cartservice.cartItemsSub.subscribe(data => {
       this.productdata = data
+      this.totalItemsCount = data.reduce((total,item) =>{return total+item.quantity},0)
  })
   }
 
