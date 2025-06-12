@@ -17,7 +17,7 @@ export class AddToCartComponent {
   constructor(){
   this.cartservice.cartItemsSub.subscribe(data => 
   {
-    
+  
   }
   )
   }
@@ -31,7 +31,7 @@ export class AddToCartComponent {
   decreaseProductItem() {
     if (this.quantity <= 1) {
       this.isAddedToCart = false;
-      // this.quantity = 1
+      this.cartservice.removeDessertFromCart(this.dessert.name)
       return
     }
     this.quantity--;
