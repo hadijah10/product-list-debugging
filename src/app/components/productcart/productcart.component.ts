@@ -12,11 +12,15 @@ export class ProductcartComponent {
 
  productdata:DessertCardDetals[] = []
  totalItemsCount: number = 0
+ totalPrice:number = 0;
 
   constructor(private cartservice:CartserviceService){
     this.cartservice.cartItemsSub.subscribe(data => {
       this.productdata = data
       this.totalItemsCount = data.reduce((total,item) =>{return total+item.quantity},0)
+       data.forEach(item => {
+         this.totalPrice+=item.quantity*item.price
+      })
  })
   }
 
