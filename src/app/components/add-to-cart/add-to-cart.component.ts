@@ -14,6 +14,15 @@ export class AddToCartComponent {
   cartservice = inject(CartserviceService)
   @Input() dessert!:Dessert
 
+  constructor(){
+  this.cartservice.cartItemsSub.subscribe(data => 
+  {
+    
+  }
+  )
+  }
+ 
+
   addToCart() {
     this.isAddedToCart = true;
     this.cartservice.addToCart({name:this.dessert.name,quantity:1,price:this.dessert.price})

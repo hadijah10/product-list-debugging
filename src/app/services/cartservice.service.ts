@@ -48,4 +48,10 @@ export class CartserviceService {
   dessertIndex(dessertname:string){
     return this.cartItems.getValue().findIndex(data => data.name == dessertname)
   }
+
+  removeDessertFromCart(dessertname:string){
+    const index = this.dessertIndex(dessertname)
+    const items = this.cartItems.getValue().splice(index,0)
+    this.cartItems.next([...items])
+  }
 }

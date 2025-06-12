@@ -3,7 +3,7 @@
 
 // cart section
 .cart {
-  width: 300px;
+  width: 100%;
   height: fit-content;
   flex: 1 0 380px;
   padding: 1rem;
@@ -24,6 +24,23 @@
       p {
         @include TextPreset4Bold;
         color: $rose-500;
+      }
+    }
+    button{
+      border: 1px solid $rose-400;
+      width:20px;
+      height: 20px;
+      display: grid;
+      place-content: center;
+      border-radius: 50%;
+      .close{
+        fill: $rose-400;
+      }
+      &:hover{
+        border-color: $rose-900;
+        .close{
+        fill: $rose-900;
+      }
       }
     }
   }

@@ -18,8 +18,8 @@ export class ProductcartComponent {
  })
   }
 
- removeDessert(){
-  
+ removeDessert(dessertname:string){
+ this.cartservice.removeDessertFromCart(dessertname)
  }
 
 

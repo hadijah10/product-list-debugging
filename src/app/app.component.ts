@@ -3,10 +3,11 @@ import { Dessert } from '../../public/datainterface';
 import { AddToCartComponent } from "./components/add-to-cart/add-to-cart.component";
 import { CartserviceService } from './services/cartservice.service';
 import { ProductcartComponent } from './components/productcart/productcart.component';
+import { ProductcardComponent } from './components/productcard/productcard.component';
 
 @Component({
   selector: 'app-root',
-  imports:[AddToCartComponent,ProductcartComponent],
+  imports:[ProductcartComponent,ProductcardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
