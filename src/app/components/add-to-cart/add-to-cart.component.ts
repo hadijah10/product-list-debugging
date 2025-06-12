@@ -1,4 +1,4 @@
-import { Component,inject,Input } from '@angular/core';
+import { Component,inject,Input, OnInit } from '@angular/core';
 import { Dessert } from '../../../../public/datainterface';
 import { CartserviceService } from '../../services/cartservice.service';
 
@@ -8,16 +8,27 @@ import { CartserviceService } from '../../services/cartservice.service';
   styleUrl: './add-to-cart.component.scss'
 })
 
-export class AddToCartComponent {
+export class AddToCartComponent implements OnInit{
   isAddedToCart = false;
   quantity = 1;
   cartservice = inject(CartserviceService)
   @Input() dessert!:Dessert
 
   constructor(){
-  this.cartservice.cartItemsSub.subscribe(data => 
+ 
+  }
+
+  ngOnInit(): void {
+     this.cartservice.cartItemsSub.subscribe(data => 
   {
-  
+    const itemFoundIndex = this.cartservice.dessertIndex(this.dessert.name)
+    if(itemFoundIndex !== -1){
+      this.quantity = data[itemFoundIndex].quantity 
+    }
+    else{
+      this.isAddedToCart = false;
+       this.quantity = 1
+    }
   }
   )
   }

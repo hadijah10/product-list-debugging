@@ -51,7 +51,8 @@ export class CartserviceService {
 
   removeDessertFromCart(dessertname:string){
     const index = this.dessertIndex(dessertname)
-    const items = this.cartItems.getValue().splice(index,0)
+    const items = this.cartItems.getValue()
+    items.splice(index,1)
     this.cartItems.next([...items])
   }
 }
