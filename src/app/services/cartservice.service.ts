@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Dessert } from '../../../public/datainterface';
-import { DessertCardDetals } from '../../../public/dessertcartdetails';
+import { DessertCartDetails } from '../../../public/dessertcartdetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartserviceService {
-  private cartItems = new BehaviorSubject<DessertCardDetals[]>([])
+  private cartItems = new BehaviorSubject<DessertCartDetails[]>([])
   public cartItemsSub = this.cartItems.asObservable()
 
   constructor(private http: HttpClient) {
@@ -18,14 +18,14 @@ export class CartserviceService {
     return this.http.get<Dessert[]>('data.json')
   }
 
-  addToCart(dessert:DessertCardDetals): void{
+  addToCart(dessert:DessertCartDetails): void{
     const dessertFoundIndex = this.isDessertFoundInCart(dessert)
     if(dessertFoundIndex == -1){
       const items = this.cartItems.value
     this.cartItems.next([...items,dessert])
     }
   }
-  isDessertFoundInCart(dessert:DessertCardDetals):number{
+  isDessertFoundInCart(dessert:DessertCartDetails):number{
     return this.cartItems.getValue().findIndex((element) => element.name == dessert.name )
   }
 
@@ -54,5 +54,8 @@ export class CartserviceService {
     const items = this.cartItems.getValue()
     items.splice(index,1)
     this.cartItems.next([...items])
+  }
+  clearAllDessertFromCart(){
+    this.cartItems.next([])
   }
 }
