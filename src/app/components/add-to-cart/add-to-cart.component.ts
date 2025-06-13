@@ -36,7 +36,7 @@ export class AddToCartComponent implements OnInit{
 
   addToCart() {
     this.isAddedToCart = true;
-    this.cartservice.addToCart({name:this.dessert.name,quantity:1,price:this.dessert.price})
+    this.cartservice.addToCart({name:this.dessert.name,quantity:1,price:this.dessert.price,image:this.dessert.image})
   }
 
   decreaseProductItem() {

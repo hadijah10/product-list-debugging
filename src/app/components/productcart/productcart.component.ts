@@ -1,19 +1,20 @@
 import { Component,inject } from '@angular/core';
 import { CartserviceService } from '../../services/cartservice.service';
-import { DessertCardDetals } from '../../../../public/dessertcartdetails';
+import { DessertCartDetails } from '../../../../public/dessertcartdetails';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-productcart',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './productcart.component.html',
   styleUrl: './productcart.component.scss',
 })
 export class ProductcartComponent {
 
- productdata:DessertCardDetals[] = []
+ productdata:DessertCartDetails[] = []
  totalItemsCount: number = 0
  totalPrice:number = 0;
- isConfired:boolean = true;
+ isConfirmed:boolean = false;
 
   constructor(private cartservice:CartserviceService){
     this.cartservice.cartItemsSub.subscribe(data => {
@@ -30,7 +31,11 @@ export class ProductcartComponent {
  }
 
  handleOrder(){
-
+  this.isConfirmed = !this.isConfirmed
+ }
+ handleNewOrder(){
+    this.isConfirmed = !this.isConfirmed;
+    this.cartservice.clearAllDessertFromCart()
  }
 
 }

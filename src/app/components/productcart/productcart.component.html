@@ -8,7 +8,7 @@
                     <h3>{{dessert.name}}</h3>
                     <div class="details">
                         <p class="quantity">{{dessert.quantity}}x</p>
-                        <p class="price">{{'@$' + dessert.price}}</p>
+                        <p class="price">&#64; {{dessert.price |  currency}}</p>
                         <p class="totalquantity">${{dessert.quantity * dessert.price}}</p>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
       <p>This is a <span class="bold">carbon-neutral</span> delivery</p>
     </div>
     
-      <button class="ord-btn">
+      <button class="ord-btn" (click)="handleOrder()">
         Confirm Order
       </button>
   </section>
@@ -45,7 +45,7 @@
     </div>
   </section>
 }
-@if(isConfired == true){
+@if(isConfirmed == true){
   <section class="confirmedmodal">
     <div class="box">
        <section class="conftop">
@@ -58,6 +58,33 @@
       <p>We hope you enjoy your food</p>
       </div>
     </section>
+    <section class="desserts">
+      @for(dessert of productdata;track $index){
+        <div class="product">
+          <div class="detail">
+            <div class="image">
+              <img [src]="dessert.image.thumbnail" alt="Dessert image" fill>
+            </div>
+            <div class="name">
+              <h2 class="dessertname">{{dessert.name}}</h2>
+              <div class="priceandquantity">
+                <p class="quantity">{{dessert.quantity}}</p>
+                <p class="price">&#64; {{dessert.price | currency}}</p>
+              </div>
+            </div>
+          </div>
+          <h3 class="totalquantity">{{dessert.price * dessert.quantity | currency}}</h3>
+        </div>
+      }
+      <div class="order">
+        <p>Order Total</p>
+        <h2>{{totalPrice | currency}}</h2>
+      </div>
+
+    </section>
+    <button class="ord-btn" (click)="handleNewOrder()">
+      Start New Order
+    </button>
     </div>
   </section>
 }

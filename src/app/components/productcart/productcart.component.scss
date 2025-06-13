@@ -103,7 +103,7 @@
 
   }
   .ord-btn{
-    width:inherit;
+    width:100%;
     border: none;
     background-color: $red;
     @include TextPreset3;
@@ -122,44 +122,142 @@
   }
 
 }
-    //   .cart button {
-    //   @include flex(row, flex-start, stretch, 0.5rem);
-    //   padding: 0.5rem 1rem;
-    //   border: 1px solid $rose-400;
-    //   background-color: $white;
-    //   border-radius: 50px;
-    //   width: fit-content;
-    //   margin: -1.2rem auto;
-     
 
-    //   &:hover {
-    //     color: $white;
-    //     border-color: $red;
-    //     transition: all 300ms ease-in-out;
-    //   }
-
-    //   p {
-    //     @include TextPreset4Bold;
-    //   }
-    // }
 .confirmedmodal{
   position: fixed;
-  width:100%;
-  height: 100vh;
-  top:0;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;             /* Use height instead of max-height */
+  top: 0;
   left: 0;
   bottom: 0;
+  right: 0;
+  overflow-y: auto; 
   background-color: rgba($color: #000000, $alpha: 0.5);
+  @include flex(row,center,center);
+  
   .box{
     width:592px;
+    background-color: $white;
+    border-radius: 12px;
+    padding: 40px;
+    margin: auto;
+    @include flex(column,flex-start,flex-start,1rem);
+      p{
+      color: $rose-900;
+    }
   }
   .conftop{
-    
+    @include flex(column,flex-start,flex-start,24px);
+      color: $rose-900;
+    .title{
+      @include flex(column);
+      gap:0.5rem;
+    }
+    h2{
+      @include TextPreset1;
+    }
+    p{
+      color: $rose-500;
+    }
+  }
+  .desserts{
+    padding: 24px;
+    width:100%;
+    @include flex(column,flex-start,flex-start,24px);
+    background-color: $rose-50;
+    .product{
+      @include flex(row,space-between,center);
+      width: inherit;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid $rose-100;
+       .totalquantity{
+        @include TextPreset4Bold;
+      }
+    }
+    .image{
+      width:48px;
+      height: 48px;
+      
+      img{
+        width: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+    }
+    .detail{
+      @include flex(row,flex-start,flex-start,1rem);
+      .dessertname{
+        @include TextPreset4Bold;
+        color: $rose-900;
+      }
+      .priceandquantity{
+        @include flex(row,flex-start,center,0.5rem);
+      }
+         .quantity{
+      @include TextPreset4Bold;
+      color: $red;
+    }
+    p{
+       color: $rose-500;
+    }
+   .price{
+    @include TextPreset4;
+   }
+  }
+      .order{
+        width: inherit;
+         @include flex(row,space-between,center);
+   p{
+    @include TextPreset4;
+   }
+    h2{
+      @include TextPreset2;
+      color: $rose-900;
+    }
+  }  
+}
+  .ord-btn{
+    width:100%;
+    border: none;
+    background-color: $red;
+    @include TextPreset3;
+    color: $white;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    border-radius: 50px;
+      cursor: pointer;
+        &:hover {
+        color: $white;
+        border-color: $red;
+        transition: all 300ms ease-in-out;
+      }
   }
 }
+h2{
+  margin: 0;
+}
 
-@media(max-width:768px){
+@media(max-width:670px){
   .cart{
     width:100%;
   }
+  .confirmedmodal{
+    .box{
+    width: 90%;
+
+  }
+  }
+}
+@media(max-width:375px){
+ .confirmedmodal{
+  align-items: end;
+   .box{
+ 
+    width:100%;
+    padding: 40px 24px;
+  }
+ }
 }
