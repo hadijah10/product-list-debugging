@@ -125,20 +125,23 @@
 
 .confirmedmodal{
   position: fixed;
- width: 100%;
+  z-index: 1;
+  width: 100%;
   height: 100vh;             /* Use height instead of max-height */
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   overflow-y: auto; 
   background-color: rgba($color: #000000, $alpha: 0.5);
-  display: grid;
-  place-content: center;
+  @include flex(row,center,center);
   
   .box{
     width:592px;
     background-color: $white;
     border-radius: 12px;
     padding: 40px;
+    margin: auto;
     @include flex(column,flex-start,flex-start,1rem);
       p{
       color: $rose-900;
@@ -233,20 +236,28 @@
       }
   }
 }
+h2{
+  margin: 0;
+}
 
-@media(max-width:768px){
+@media(max-width:670px){
   .cart{
     width:100%;
   }
   .confirmedmodal{
     .box{
-    width: 688px;
+    width: 90%;
+
   }
   }
 }
 @media(max-width:375px){
-  .box{
-    width:375px;
-    padding: 40px 0;
+ .confirmedmodal{
+  align-items: end;
+   .box{
+ 
+    width:100%;
+    padding: 40px 24px;
   }
+ }
 }

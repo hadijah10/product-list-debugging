@@ -8,7 +8,7 @@
                     <h3>{{dessert.name}}</h3>
                     <div class="details">
                         <p class="quantity">{{dessert.quantity}}x</p>
-                        <p class="price">{{'@'+dessert.price |  currency}}</p>
+                        <p class="price">&#64; {{dessert.price |  currency}}</p>
                         <p class="totalquantity">${{dessert.quantity * dessert.price}}</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
               <h2 class="dessertname">{{dessert.name}}</h2>
               <div class="priceandquantity">
                 <p class="quantity">{{dessert.quantity}}</p>
-                <p class="price">{{dessert.price | currency}}</p>
+                <p class="price">&#64; {{dessert.price | currency}}</p>
               </div>
             </div>
           </div>
