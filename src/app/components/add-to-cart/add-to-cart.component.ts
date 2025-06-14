@@ -1,6 +1,7 @@
 import { Component,inject,Input, OnInit } from '@angular/core';
 import { Dessert } from '../../../../public/datainterface';
 import { CartserviceService } from '../../services/cartservice.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -13,13 +14,14 @@ export class AddToCartComponent implements OnInit{
   quantity = 1;
   cartservice = inject(CartserviceService)
   @Input() dessert!:Dessert
+  subscription = new Subscription();
 
   constructor(){
  
   }
 
   ngOnInit(): void {
-     this.cartservice.cartItemsSub.subscribe(data => 
+     this.subscription = this.cartservice.cartItemsSub.subscribe(data => 
   {
     const itemFoundIndex = this.cartservice.dessertIndex(this.dessert.name)
     if(itemFoundIndex !== -1){
@@ -53,5 +55,8 @@ export class AddToCartComponent implements OnInit{
     ++this.quantity;
     this.cartservice.increaseQuantity(this.dessert.name)
   }
+ngOnDestroy():void{
+  this.subscription.unsubscribe()
+}
 
 };

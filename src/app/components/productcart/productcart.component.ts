@@ -35,7 +35,7 @@ export class ProductcartComponent {
  }
  handleNewOrder(){
     this.isConfirmed = !this.isConfirmed;
-    this.cartservice.clearAllDessertFromCart()
+    this.cartservice.clearAllDessertFromCart
  }
 
 }
