@@ -2,6 +2,7 @@ import { Component,inject } from '@angular/core';
 import { CartserviceService } from '../../services/cartservice.service';
 import { DessertCartDetails } from '../../../../public/dessertcartdetails';
 import { CurrencyPipe } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-productcart',
@@ -15,9 +16,10 @@ export class ProductcartComponent {
  totalItemsCount: number = 0
  totalPrice:number = 0;
  isConfirmed:boolean = false;
+subscription:Subscription = new Subscription()
 
   constructor(private cartservice:CartserviceService){
-    this.cartservice.cartItemsSub.subscribe(data => {
+     this.subscription = this.cartservice.cartItemsSub.subscribe(data => {
       this.productdata = data
       this.totalItemsCount = data.reduce((total,item) =>{return total+item.quantity},0)
        data.forEach(item => {
@@ -36,6 +38,10 @@ export class ProductcartComponent {
  handleNewOrder(){
     this.isConfirmed = !this.isConfirmed;
     this.cartservice.clearAllDessertFromCart
+ }
+
+ ngOnDestroy():void{
+  this.subscription.unsubscribe();
  }
 
 }
